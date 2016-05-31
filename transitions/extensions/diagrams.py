@@ -114,7 +114,7 @@ class AGraph(Diagram):
     def _transition_label(self, edge_label, tran):
         if self.machine.show_conditions and tran.conditions:
             return '{edge_label} [{conditions}]'.format(
-                edge_label=edge_label,
+                edge_label='',
                 conditions=' & '.join(
                     c.func if c.target else '!' + c.func
                     for c in tran.conditions
