@@ -310,6 +310,7 @@ class Machine(object):
         """
         self.model = self if model is None else model
         self.states = OrderedDict()
+        self.transitions = []
         self.events = {}
         self.current_state = None
         self.send_event = send_event
@@ -455,6 +456,7 @@ class Machine(object):
             **kwargs: Additional arguments which can be passed to the created transition.
                 This is useful if you plan to extend Machine.Transition and require more parameters.
         """
+        self.transitions.append([trigger,source,dest])
         if trigger not in self.events:
             self.events[trigger] = self._create_event(trigger, self)
             setattr(self.model, trigger, self.events[trigger].trigger)
